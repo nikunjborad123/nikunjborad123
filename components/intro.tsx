@@ -9,6 +9,7 @@ import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import photo from '../public/nikunj.png';
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -31,8 +32,8 @@ export default function Intro() {
             }}
           >
             <Image
-              src="/nikunj.png"
-              alt="Ricardo portrait"
+              src={photo}
+              alt="Nikunj Borad"
               width="240"
               height="240"
               quality="95"
