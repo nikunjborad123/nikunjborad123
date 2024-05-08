@@ -19,30 +19,24 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        After graduating with a degree in{" "}
-        <span className="font-medium">Accounting</span>, I decided to pursue my
-        passion for programming. I enrolled in a coding bootcamp and learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
-        <span className="font-medium">
-          React, Next.js, Node.js, and MongoDB
-        </span>
-        . I am also familiar with TypeScript and Prisma. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a software
-        developer.
-      </p>
-
-      <p>
-        <span className="italic">When I&apos;m not coding</span>, I enjoy playing
-        video games, watching movies, and playing with my dog. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">history and philosophy</span>. I&apos;m also
-        learning how to play the guitar.
+        Hey there! 👋 I'm a <b> frontend developer</b> who's all about turning pixels
+        into poetry and crafting digital experiences that leave users in awe. My
+        journey into coding started with a passion for problem-solving, but it
+        was the magic of frontend development that truly stole my heart. <br />
+        <br /> I spend my days diving deep into <b> React.js and Next.js</b>,
+        sprinkling in a dash of
+        <b> HTML, CSS, and JavaScript </b>to breathe life into designs. From
+        tweaking stylesheets to fine-tuning animations, I'm all about those
+        little details that make a big difference. And you can bet I've got
+        TypeScript in my toolkit, adding that extra layer of stability to my
+        projects. <br />
+        <br /> When I'm not knee-deep in code, you'll often find me battling
+        dragons in virtual realms or lost in the captivating plots of the latest
+        blockbuster films. And if I'm not glued to a screen, I'll likely be
+        strumming away on my guitar, trying to master that elusive chord
+        progression. I'm on the lookout for new opportunities to collaborate and
+        bring my frontend expertise to the table. Let's team up and create some
+        digital magic together! ✨
       </p>
     </motion.section>
   );
