@@ -10,7 +10,7 @@ import ThemeSwitch from "@/components/theme-switch";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Nikunj | Personal Portfolio",
   description: "Nikunj is a frontend developer with 5 years of experience.",
 };
