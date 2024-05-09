@@ -9,6 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 interface FormData {
+  name: string;
   email: string;
   message: string;
 }
@@ -17,6 +18,7 @@ export default function Contact() {
   const { ref } = useSectionInView("Contact");
 
   const [formData, setFormData] = useState<FormData>({
+    name: "",
     email: "",
     message: "",
   });
@@ -27,9 +29,20 @@ export default function Contact() {
     try {
       // Add the form data to Firestore
       await addDoc(collection(db, "contacts"), formData);
+      await fetch('api/mailService', {
+        method: 'POST', // Specify the HTTP method
+        headers: {
+          'Content-Type': 'application/json', // Specify the content type
+        },
+        body: JSON.stringify({ // Convert data to JSON string
+          name: formData.name,
+          email: formData.email
+        }),
+      });
   
       // Reset form data after successful submission
       setFormData({
+        name: "",
         email: "",
         message: "",
       });
@@ -83,7 +96,17 @@ export default function Contact() {
         onSubmit={handleFormSubmit}
       >
         <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none mb-3"
+          name="name"
+          type="text"
+          value={formData.name}
+          onChange={handleInputChange}
+          required
+          maxLength={500}
+          placeholder="Your Name"
+        />
+        <input
+          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none mb-3"
           name="email"
           type="email"
           value={formData.email}
@@ -93,7 +116,7 @@ export default function Contact() {
           placeholder="Your email"
         />
         <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="h-52 mb-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           name="message"
           value={formData.message}
           onChange={handleInputChange}
