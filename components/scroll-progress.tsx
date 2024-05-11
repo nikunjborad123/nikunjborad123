@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useScroll } from "framer-motion";
-import React from "react";
+import { motion, useScroll } from 'framer-motion';
+import React from 'react';
 
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
@@ -12,7 +12,7 @@ const ScrollProgress = () => {
         scaleX: scrollYProgress,
       }}
       transition={{
-        type: "ease-in-out",
+        type: 'ease-in-out',
       }}
     />
   );

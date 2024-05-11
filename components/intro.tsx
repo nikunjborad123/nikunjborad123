@@ -1,18 +1,17 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { BsArrowRight, BsLinkedin } from "react-icons/bs";
-import { HiDownload } from "react-icons/hi";
-import { FaGithubSquare } from "react-icons/fa";
-import { useSectionInView } from "@/lib/hooks";
-import { useActiveSectionContext } from "@/context/active-section-context";
+import Image from 'next/image';
+import React from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { BsArrowRight } from 'react-icons/bs';
+import { HiDownload } from 'react-icons/hi';
+import { useSectionInView } from '@/lib/hooks';
+import { useActiveSectionContext } from '@/context/active-section-context';
 import photo from '../public/nikunj.png';
 
-export default function   Intro() {
-  const { ref } = useSectionInView("Home", 0.5);
+export default function Intro() {
+  const { ref } = useSectionInView('Home', 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
@@ -27,7 +26,7 @@ export default function   Intro() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
-              type: "tween",
+              type: 'tween',
               duration: 0.2,
             }}
           >
@@ -47,7 +46,7 @@ export default function   Intro() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
-              type: "spring",
+              type: 'spring',
               stiffness: 125,
               delay: 0.1,
               duration: 0.7,
@@ -63,8 +62,11 @@ export default function   Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-
-        <span>Hello, I'm <b>Nikunj</b>. I'm a <b>Frontend developer</b> with <b> 5 years </b> of experience. I enjoy building sites & apps. My focus is <b> React (Next.js)</b>.</span>
+        <span>
+          Hello, I'm <b>Nikunj</b>. I'm a <b>Frontend developer</b> with{' '}
+          <b> 5 years </b> of experience. I enjoy building sites & apps. My
+          focus is <b> React (Next.js)</b>.
+        </span>
       </motion.h1>
 
       <motion.div
@@ -79,11 +81,11 @@ export default function   Intro() {
           href="#contact"
           className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 hover:text-green-400 active:scale-105 transition"
           onClick={() => {
-            setActiveSection("Contact");
+            setActiveSection('Contact');
             setTimeOfLastClick(Date.now());
           }}
         >
-          Contact me here{" "}
+          Contact me here{' '}
           <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
         </Link>
 
@@ -92,24 +94,8 @@ export default function   Intro() {
           href="/CV.pdf"
           download
         >
-          Download CV{" "}
+          Download CV{' '}
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 hover:text-[#0762C8] flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://www.linkedin.com/in/nikunj-borad-7027b4180"
-          target="_blank"
-        >
-          <BsLinkedin />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/nikunjborad123"
-          target="_blank"
-        >
-          <FaGithubSquare />
         </a>
       </motion.div>
     </section>

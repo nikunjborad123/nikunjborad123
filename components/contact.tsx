@@ -1,12 +1,12 @@
-"use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { useSectionInView } from "@/lib/hooks";
-import SectionHeading from "./section-heading";
-import SubmitBtn from "./SubmitBtn";
-import toast from "react-hot-toast";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+'use client';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useSectionInView } from '@/lib/hooks';
+import SectionHeading from './section-heading';
+import SubmitBtn from './SubmitBtn';
+import toast from 'react-hot-toast';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 interface FormData {
   name: string;
@@ -15,12 +15,12 @@ interface FormData {
 }
 
 export default function Contact() {
-  const { ref } = useSectionInView("Contact");
+  const { ref } = useSectionInView('Contact');
 
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +28,7 @@ export default function Contact() {
   
     try {
       // Add the form data to Firestore
-      await addDoc(collection(db, "contacts"), formData);
+      await addDoc(collection(db, 'contacts'), formData);
       await fetch('api/mailService', {
         method: 'POST', // Specify the HTTP method
         headers: {
@@ -42,17 +42,17 @@ export default function Contact() {
   
       // Reset form data after successful submission
       setFormData({
-        name: "",
-        email: "",
-        message: "",
+        name: '',
+        email: '',
+        message: '',
       });
   
       // Show success toast
-      toast.success("Message sent successfully!");
+      toast.success('Message sent successfully!');
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error('Error adding document: ', error);
       // Show error toast
-      toast.error("Failed to send message. Please try again later.");
+      toast.error('Failed to send message. Please try again later.');
     }
   };
 
@@ -84,10 +84,10 @@ export default function Contact() {
       <SectionHeading>Contact me</SectionHeading>
 
       <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
+        Please contact me directly at{' '}
         <a className="underline" href="mailto:boradnikunj2001@gmail.com">
           boradnikunj2001@gmail.com
-        </a>{" "}
+        </a>{' '}
         or through this form.
       </p>
 

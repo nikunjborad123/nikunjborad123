@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
-export async function POST(req: Request, res: NextResponse) {
+export async function POST(req: Request) {
   const { name, email } = await req.json();
   // Create a Nodemailer transporter
 
@@ -12,7 +12,7 @@ Thank you for reaching out. I have received your message and will get back to yo
 Best regards,
 Nikunj Borad`;
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: 'gmail',
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
@@ -23,7 +23,7 @@ Nikunj Borad`;
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Thank You for Contacting Me",
+    subject: 'Thank You for Contacting Me',
     text: html,
   };
 
@@ -34,10 +34,10 @@ Nikunj Borad`;
       if (error) {
         console.log(error);
       } else {
-        console.log("Email sent: " + info.response);
+        console.log('Email sent: ' + info.response);
       }
     }
   );
 
-  return NextResponse.json({ message: "email send successfully" });
+  return NextResponse.json({ message: 'email send successfully' });
 }

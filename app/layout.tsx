@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import ThemeContextProvider from "@/context/theme-context";
-import ActiveSectionContextProvider from "@/context/active-section-context";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import { Toaster } from "react-hot-toast";
-import ThemeSwitch from "@/components/theme-switch";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import ThemeContextProvider from '@/context/theme-context';
+import ActiveSectionContextProvider from '@/context/active-section-context';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import { Toaster } from 'react-hot-toast';
+import ThemeSwitch from '@/components/theme-switch';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Nikunj | Personal Portfolio",
-  description: "Nikunj is a frontend developer with 5 years of experience.",
+  title: 'Nikunj | Personal Portfolio',
+  description: 'Nikunj is a frontend developer with 5 years of experience.',
 };
 
 export default function RootLayout({

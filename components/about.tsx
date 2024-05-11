@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "framer-motion";
-import { useSectionInView } from "@/lib/hooks";
-import SectionHeading from "./section-heading";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useSectionInView } from '@/lib/hooks';
+import SectionHeading from './section-heading';
 
 export default function About() {
-  const { ref } = useSectionInView("About");
+  const { ref } = useSectionInView('About');
 
   return (
     <motion.section
