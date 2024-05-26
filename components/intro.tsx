@@ -8,7 +8,7 @@ import { HiDownload } from 'react-icons/hi';
 import { useSectionInView } from '@/lib/hooks';
 import { useActiveSectionContext } from '@/context/active-section-context';
 import photo from '../public/nikunj.png';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import SplitType from 'split-type';
 
@@ -21,38 +21,37 @@ export default function Intro() {
 
   useGSAP(
     () => {
-      let text;
       if (introRef.current) {
-        text = SplitType.create(introRef.current, { types: 'chars' });
-      }
+        const text = SplitType.create(introRef.current, { types: 'chars' });
 
-      tl.current = gsap
-        .timeline()
-        .from('.userAvatar', {
-          opacity: 1,
-          y: 200,
-          duration: 0.5,
-          ease: 'back.out(1.7)',
-        })
-        .from('.hand', {
-          opacity: 0,
-          y: 200,
-          duration: 0.3,
-          ease: 'back.out(1.7)',
-        })
-        .from(text?.chars as HTMLElement[], {
-          y: -50,
-          scaleY: 0,
-          opacity: 0,
-          stagger: 0.01,
-          duration: 0.5,
-          ease: 'circ.in',
-        })
-        .from('.buttonsGroup', {
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power4.in',
-        });
+        tl.current = gsap
+          .timeline()
+          .from('.userAvatar', {
+            opacity: 1,
+            y: 200,
+            duration: 0.5,
+            ease: 'back.out(1.7)',
+          })
+          .from('.hand', {
+            opacity: 0,
+            y: 200,
+            duration: 0.3,
+            ease: 'back.out(1.7)',
+          })
+          .from(text.chars, {
+            y: -50,
+            scaleY: 0,
+            opacity: 0,
+            stagger: 0.01,
+            duration: 0.5,
+            ease: 'circ.in',
+          })
+          .from('.buttonsGroup', {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power4.in',
+          });
+      }
     },
     { scope: '#home' }
   );
@@ -65,15 +64,15 @@ export default function Intro() {
     >
       <div className="flex items-center justify-center">
         <div className="relative">
-            <Image
-              src={photo}
-              alt="Nikunj Borad"
-              width="240"
-              height="240"
-              quality="95"
-              priority={true}
-              className="userAvatar h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
-            />
+          <Image
+            src={photo}
+            alt="Nikunj Borad"
+            width="240"
+            height="240"
+            quality="95"
+            priority={true}
+            className="userAvatar h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+          />
 
           <span className="hand absolute bottom-0 right-0 text-4xl">👋</span>
         </div>
