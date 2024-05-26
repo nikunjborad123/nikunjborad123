@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useSectionInView } from '@/lib/hooks';
 import SectionHeading from './section-heading';
 import { gsap } from 'gsap';
@@ -8,22 +8,32 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SplitType from 'split-type';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const [chars, setChars] = useState<SplitType | null>(null);
   const { ref } = useSectionInView('About');
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const splitText = useCallback(() => {
+    if (!chars) {
+      const text = SplitType.create('#aboutMe', { types: 'words' });
+      setChars(text);
+    }
+  }, [chars]);
+
   useEffect(() => {
-    const text = SplitType.create('#aboutMe', { types: 'chars' });
-    setChars(text);
-  }, [])
+    splitText();
+  }, [splitText]);
 
   useGSAP(
     () => {
-      if (!containerRef || !chars) return;
-      gsap.from(chars?.chars, {
+      if (!containerRef.current || !chars) return;
+
+      const charsArray = chars.words;
+      if (charsArray?.length === 0) return;
+
+      gsap.from(charsArray, {
         opacity: 0.2,
         duration: 0.5,
         stagger: 0.01,
@@ -33,7 +43,7 @@ export default function About() {
           end: 'bottom 50%',
           scrub: 2,
           markers: false,
-        }
+        },
       });
     },
     { scope: containerRef, dependencies: [chars] }
