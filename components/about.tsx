@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSectionInView } from '@/lib/hooks';
 import SectionHeading from './section-heading';
 import { gsap } from 'gsap';
@@ -11,15 +11,19 @@ import SplitType from 'split-type';
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function About() {
+  const [chars, setChars] = useState<SplitType | null>(null);
   const { ref } = useSectionInView('About');
   const containerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const text = SplitType.create('#aboutMe', { types: 'chars' });
+    setChars(text);
+  }, [])
+
   useGSAP(
     () => {
-      if (!containerRef) return;
-      const text = SplitType.create('#aboutMe', { types: 'chars' });
-
-      gsap.from(text?.chars, {
+      if (!containerRef || !chars) return;
+      gsap.from(chars?.chars, {
         opacity: 0.2,
         duration: 0.5,
         stagger: 0.01,
@@ -32,7 +36,7 @@ export default function About() {
         }
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [chars] }
   );
 
   return (
