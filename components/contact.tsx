@@ -101,8 +101,6 @@ export default function Contact() {
           type="text"
           value={formData.name}
           onChange={handleInputChange}
-          required
-          maxLength={500}
           placeholder="Your Name"
         />
         <input
@@ -111,8 +109,6 @@ export default function Contact() {
           type="email"
           value={formData.email}
           onChange={handleInputChange}
-          required
-          maxLength={500}
           placeholder="Your email"
         />
         <textarea
@@ -121,7 +117,6 @@ export default function Contact() {
           value={formData.message}
           onChange={handleInputChange}
           placeholder="Your message"
-          required
           maxLength={5000}
         />
         <SubmitBtn />
