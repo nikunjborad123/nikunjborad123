@@ -3,6 +3,6 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "no-unused-vars": "error",
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single", "double"]
   }
 }

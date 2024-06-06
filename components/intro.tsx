@@ -8,54 +8,54 @@ import { HiDownload } from 'react-icons/hi';
 import { useSectionInView } from '@/lib/hooks';
 import { useActiveSectionContext } from '@/context/active-section-context';
 import photo from '../public/nikunj.png';
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
-import SplitType from 'split-type';
+// import { gsap } from 'gsap';
+// import { useGSAP } from '@gsap/react';
+// import SplitType from 'split-type';
 
-gsap.registerPlugin(useGSAP);
+// gsap.registerPlugin(useGSAP);
 export default function Intro() {
-  const introRef = useRef<HTMLHeadingElement>(null);
+  // const introRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const tl = useRef<GSAPTimeline>();
+  // const tl = useRef<GSAPTimeline>();
   const { ref } = useSectionInView('Home', 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
-  useGSAP(
-    () => {
-      if (introRef.current) {
-        const text = SplitType.create(introRef.current, { types: 'chars' });
+  // useGSAP(
+  //   () => {
+  //     if (introRef.current) {
+  //       const text = SplitType.create(introRef.current, { types: 'chars' });
 
-        tl.current = gsap
-          .timeline()
-          .from('.userAvatar', {
-            opacity: 1,
-            y: 200,
-            duration: 0.5,
-            ease: 'back.out(1.7)',
-          })
-          .from('.hand', {
-            opacity: 0,
-            y: 200,
-            duration: 0.3,
-            ease: 'back.out(1.7)',
-          })
-          .from(text.chars, {
-            y: -50,
-            scaleY: 0,
-            opacity: 0,
-            stagger: 0.01,
-            duration: 0.5,
-            ease: 'circ.in',
-          })
-          .from('.buttonsGroup', {
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power4.in',
-          });
-      }
-    },
-    { scope: containerRef }
-  );
+  //       tl.current = gsap
+  //         .timeline()
+  //         .from('.userAvatar', {
+  //           opacity: 1,
+  //           y: 200,
+  //           duration: 0.5,
+  //           ease: 'back.out(1.7)',
+  //         })
+  //         .from('.hand', {
+  //           opacity: 0,
+  //           y: 200,
+  //           duration: 0.3,
+  //           ease: 'back.out(1.7)',
+  //         })
+  //         .from(text.chars, {
+  //           y: -50,
+  //           scaleY: 0,
+  //           opacity: 0,
+  //           stagger: 0.01,
+  //           duration: 0.5,
+  //           ease: 'circ.in',
+  //         })
+  //         .from('.buttonsGroup', {
+  //           opacity: 0,
+  //           duration: 0.3,
+  //           ease: 'power4.in',
+  //         });
+  //     }
+  //   },
+  //   { scope: containerRef }
+  // );
 
   return (
     <section
@@ -63,7 +63,7 @@ export default function Intro() {
       id="home"
       className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
     >
-      <div ref={containerRef}>
+      <div ref={containerRef} className='min-h-[calc(100vh_-_200px)] grid'>
         <div className="flex items-center justify-center">
           <div className="relative">
             <Image
@@ -81,13 +81,12 @@ export default function Intro() {
         </div>
 
         <h1
-          ref={introRef}
-          className="introText mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+          className="introText mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl"
         >
           <span>
             Hello, I'm <b>Nikunj</b>. I'm a <b>Frontend developer</b> with{' '}
             <b> 5 years </b> of experience. I enjoy building sites & apps. My
-            focus is <b> React (Next.js)</b>.
+            focus is <b> React (Next.js)</b>.  I'm passionate about creating seamless user experiences and continually learning new technologies.
           </span>
         </h1>
 
