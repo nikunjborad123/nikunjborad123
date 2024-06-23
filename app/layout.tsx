@@ -13,8 +13,25 @@ import { Suspense } from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Nikunj | Personal Portfolio',
-  description: 'Nikunj is a frontend developer with 5 years of experience.',
+  title: 'Nikunj Borad | Frontend Developer Portfolio',
+  description: 'Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.',
+  keywords: 'Nikunj Borad, frontend developer, web developer, portfolio, JavaScript, React, Next.js, web applications, responsive design, user-friendly interfaces',
+  authors: {
+    name: 'Nikunj Borad',
+    url: 'https://nikunjborad.tech',
+  },
+  openGraph: {
+    title: 'Nikunj Borad | Frontend Developer Portfolio',
+    description: 'Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.',
+    type: 'website',
+    url: 'https://nikunjborad.tech',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nikunj Borad | Frontend Developer Portfolio',
+    description: 'Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.',
+  },
+  
 };
 
 export default function RootLayout({
