@@ -29,7 +29,7 @@
  <a href="https://nikunjborad.tech" target="blank">
   <img src="https://img.shields.io/badge/Website-DC143C?style=for-the-badge&logo=medium&logoColor=white" alt="nikunjborad123" />
  </a>
- <a href="linkedin.com/in/nikunj-borad-7027b4180" target="_blank">
+ <a href="https://linkedin.com/in/nikunj-borad-7027b4180" target="_blank">
   <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="nikunjborad123"/>
  </a>
  <a href="https://www.instagram.com/n.m.borad/" target="_blank">
