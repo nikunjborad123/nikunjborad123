@@ -1,37 +1,42 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import ThemeContextProvider from '@/context/theme-context';
-import ActiveSectionContextProvider from '@/context/active-section-context';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import { Toaster } from 'react-hot-toast';
-import ThemeSwitch from '@/components/theme-switch';
-import LoadingScreen from '@/components/loadingScreen';
-import { Suspense } from 'react';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import ThemeContextProvider from "@/context/theme-context";
+import ActiveSectionContextProvider from "@/context/active-section-context";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import { Toaster } from "react-hot-toast";
+import ThemeSwitch from "@/components/theme-switch";
+import LoadingScreen from "@/components/loadingScreen";
+import { Suspense } from "react";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Nikunj Borad | Frontend Developer Portfolio',
-  description: 'Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.',
-  keywords: 'Nikunj Borad, frontend developer, web developer, portfolio, JavaScript, React, Next.js, web applications, responsive design, user-friendly interfaces',
+  title: "Nikunj Borad | Frontend Developer Portfolio",
+  description:
+    "Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.",
+  keywords:
+    "Nikunj Borad, frontend developer, web developer, portfolio, JavaScript, React, Next.js, web applications, responsive design, user-friendly interfaces",
   authors: {
-    name: 'Nikunj Borad',
-    url: 'https://nikunjborad.tech',
+    name: "Nikunj Borad",
+    url: "https://nikunjborad.tech",
   },
   openGraph: {
-    title: 'Nikunj Borad | Frontend Developer Portfolio',
-    description: 'Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.',
-    type: 'website',
-    url: 'https://nikunjborad.tech',
+    title: "Nikunj Borad | Frontend Developer Portfolio",
+    description:
+      "Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.",
+    type: "website",
+    url: "https://nikunjborad.tech",
+    images: "https://nikunjborad.tech/opengraph-image.png",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Nikunj Borad | Frontend Developer Portfolio',
-    description: 'Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.',
+    card: "summary_large_image",
+    title: "Nikunj Borad | Frontend Developer Portfolio",
+    description:
+      "Explore the portfolio of Nikunj Borad, a skilled frontend developer with over 5 years of experience in creating responsive and user-friendly web applications. Discover my projects, skills, and professional journey.",
+    images: "https://nikunjborad.tech/opengraph-image.png",
   },
-  
 };
 
 export default function RootLayout({
