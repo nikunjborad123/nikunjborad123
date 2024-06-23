@@ -1,9 +1,60 @@
-<h1 align="center">Hi 👋, I'm Vikas Kalsariya</h1>
-<h3 align="center">A passionate full-stack developer from India</h3>
 
-<h5 align="left">👋 Welcome to my profile! I'm Vikas Kalsariya, a passionate full-stack developer with a knack for turning ideas into reality through code. Here's a bit about me:<br><br>🛠️ Expertise :<br>I specialize in a range of technologies, including:<br><br>Node.js: Building robust, scalable backends.<br>MongoDB: Crafting efficient database solutions.<br>Express.js: Creating APIs and backend services.<br>React.js & Next.js: Crafting dynamic and responsive user interfaces.<br>JavaScript & TypeScript: Mastering the art of programming with these powerful languages.<br>Frontend Development: Crafting engaging and user-friendly experiences.</h5>
 
-###
+<a href="https://komarev.com/ghpvc/?username=nikunjborad123">
+  <img align="right" src="https://komarev.com/ghpvc/?username=nikunjborad123&label=Visitors&color=0e75b6&style=flat" alt="Profile visitor" />
+</a>
+
+
+[![wakatime](https://wakatime.com/badge/user/eebb3dd8-d9b2-40de-9b88-6fd6cac99dbc.svg)](https://wakatime.com/@eebb3dd8-d9b2-40de-9b88-6fd6cac99dbc)
+
+<!-- Intro  -->
+<h3 align="center">
+        <samp>&gt; Hey There!, I am
+                <b><a target="_blank" href="https://nikunjborad.tech">Nikunj Borad</a></b>
+        </samp>
+</h3>
+
+
+<p align="center"> 
+  <samp>
+    <a href="https://www.google.com/search?q=nikunj-borad-7027b4180?">「 Google Me 」</a>
+    <br>
+    「 I am a frontend web developer from <b>India</b> 」
+    <br>
+    <br>
+  </samp>
+</p>
+
+<p align="center">
+ <a href="https://nikunjborad.tech" target="blank">
+  <img src="https://img.shields.io/badge/Website-DC143C?style=for-the-badge&logo=medium&logoColor=white" alt="nikunjborad123" />
+ </a>
+ <a href="linkedin.com/in/nikunj-borad-7027b4180" target="_blank">
+  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="nikunjborad123"/>
+ </a>
+ <a href="https://www.instagram.com/n.m.borad/" target="_blank">
+  <img src="https://img.shields.io/badge/Instagram-fe4164?style=for-the-badge&logo=instagram&logoColor=white" alt="nikunjborad123" />
+ </a> 
+ <a href="https://www.facebook.com/nikunj.borad.92" target="_blank">
+  <img src="https://img.shields.io/badge/Facebook-20BEFF?&style=for-the-badge&logo=facebook&logoColor=white" alt="nikunjborad123"  />
+  </a> 
+</p>
+<br />
+
+<!-- About Section -->
+ # About me
+ 
+<p>
+ <img align="right" width="350" src="/assets/programmer.gif" alt="Coding gif" />
+  
+ ✌️ &emsp; Enjoy to do programming and sharing knowledge <br/><br/>
+ ❤️ &emsp; Love to writing code and learning new features<br/><br/>
+ 📧 &emsp; Reach me anytime: boradnikunj2001@gmail.com<br/><br/>
+ 💬 &emsp; Ask me about anything [here](https://github.com/nikunjborad123/nikunjborad123/issues)
+
+</p>
+
+<br/>
 
 <h5 align="left">Languages and Tools:</h5>
 
@@ -21,14 +72,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="30" alt="html5 logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="30" alt="css3 logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="30" alt="mongodb logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="30" alt="mysql logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="30" alt="postgresql logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" height="30" alt="sqlite logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" height="30" alt="bootstrap logo"  />
   <img width="12" />
@@ -51,38 +94,27 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" height="30" alt="vuejs logo"  />
 </div>
 
-###
+<br/>
+<hr/>
+<br/>
 
-<div align="center">
-  <img src="https://streak-stats.demolab.com?user=vikaskalsariya&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=5&order=3" height="150" alt="streak graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=vikaskalsariya&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&order=2" height="150" alt="languages graph"  />
-</div>
-
-###
-
-<h5 align="left">Connect with me:</h5>
-
-###
-
-<div align="left">
-  <a href="https://www.instagram.com/vr_k_2513/" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge" height="24" alt="instagram logo"  />
+<p align="center">
+  <a href="https://github.com/nikunjborad123">
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=nikunjborad123&theme=radical&border=7F3FBF&background=0D1117" alt="Saif's GitHub streak"/>
   </a>
-  <a href="vikasahir2503@gmail.com" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Gmail&logo=gmail&label=&color=D14836&logoColor=white&labelColor=&style=for-the-badge" height="24" alt="gmail logo"  />
-  </a>
-  <a href="https://www.linkedin.com/in/vikas-kalsariya/" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="24" alt="linkedin logo"  />
-  </a>
-  <a href="https://ko-fi.com/vikaskalsariya#paypalModal" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Ko-fi&logo=ko-fi&label=&color=F16061&logoColor=white&labelColor=&style=for-the-badge" height="24" alt="ko-fi logo"  />
-  </a>
-</div>
+</p>
 
-###
+<p align="center">
+  <a href="https://github.com/nikunjborad123">
+    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=nikunjborad123&theme=radical" alt="Nikunj borad GitHub Contribution"/>
+  </a>
+</p>
 
-<div align="center">
-  <img src="https://profile-counter.glitch.me/vikaskalsariya/count.svg?"  />
-</div>
+<a> 
+    <a href="https://github.com/nikunjborad123"><img alt="Nikunj borad Github Stats" src="https://denvercoder1-github-readme-stats.vercel.app/api?username=nikunjborad123&show_icons=true&count_private=true&theme=react&border_color=7F3FBF&bg_color=0D1117&title_color=F85D7F&icon_color=F8D866" height="192px" width="49.5%"/></a>
+  <a href="https://github.com/nikunjborad123"><img alt="Nikunj borad Top Languages" src="https://denvercoder1-github-readme-stats.vercel.app/api/top-langs/?username=nikunjborad123&langs_count=8&layout=compact&theme=react&border_color=7F3FBF&bg_color=0D1117&title_color=F85D7F&icon_color=F8D866" height="192px" width="49.5%"/></a>
+  <br/>
+</a>
 
-###
+
+![Nikunj borad Graph](https://github-readme-activity-graph.vercel.app/graph?username=nikunjborad123&custom_title=Al%20Siam's%20GitHub%20Activity%20Graph&bg_color=0D1117&color=7F3FBF&line=7F3FBF&point=7F3FBF&area_color=FFFFFF&title_color=FFFFFF&area=true)
