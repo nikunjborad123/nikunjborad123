@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   const { name, email } = await req.json();
+  console.log('POST', name, email);
   // Create a Nodemailer transporter
 
   const html = `Dear ${name},
