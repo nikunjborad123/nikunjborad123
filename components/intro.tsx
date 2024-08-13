@@ -67,7 +67,7 @@ export default function Intro() {
         <div className="flex items-center justify-center">
           <div className="relative">
             <Image
-              src={photo}
+              src={'/emojy-with-leptop-2.jpg'}
               alt="Nikunj Borad"
               width="240"
               height="240"
