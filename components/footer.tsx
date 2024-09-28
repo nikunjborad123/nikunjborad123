@@ -1,10 +1,9 @@
 import { Button } from './ui/button';
 import {
-  FaFacebookF,
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
 } from 'react-icons/fa';
+import { SiUpwork } from "react-icons/si";
 import {
   Tooltip,
   TooltipContent,
@@ -14,9 +13,9 @@ import {
 
 const socialLinks = [
   {
-    icon: <FaLinkedinIn height={5} />,
-    url: 'https://www.linkedin.com/in/nikunj-borad-7027b4180',
-    tooltip: 'Visit LinkedIn',
+    icon: <SiUpwork />,
+    url: 'https://www.upwork.com/freelancers/boradnikunj?mp_source=share',
+    tooltip: 'Visit Upwork',
   },
   {
     icon: <FaGithub />,
@@ -24,14 +23,9 @@ const socialLinks = [
     tooltip: 'Visit GitHub',
   },
   {
-    icon: <FaFacebookF />,
-    url: 'https://www.facebook.com/nikunj.borad.92',
-    tooltip: 'Visit Facebook',
-  },
-  {
-    icon: <FaInstagram />,
-    url: 'https://www.instagram.com/n.m.borad',
-    tooltip: 'Visit Instagram',
+    icon: <FaLinkedinIn height={5} />,
+    url: 'https://www.linkedin.com/in/nikunj-borad-7027b4180',
+    tooltip: 'Visit LinkedIn',
   },
 ];
 
