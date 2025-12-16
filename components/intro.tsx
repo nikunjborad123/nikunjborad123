@@ -83,7 +83,7 @@ export default function Intro() {
         <h1 className="introText mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl">
           <span>
             Hello, I'm <b>Nikunj</b>. I'm a <b>Frontend developer</b> with{" "}
-            <b> 5 years </b> of experience. I enjoy building sites & apps. My
+            <b> 3+ years </b> of experience. I enjoy building sites & apps. My
             focus is <b> React (Next.js)</b>. I'm passionate about creating
             seamless user experiences and continually learning new technologies.
           </span>

@@ -39,7 +39,7 @@ export const experiencesData = [
     description:
       "Developed and maintained React-based applications for 2 years, focusing on UI/UX enhancements. Transitioned to full stack development, acquiring skills in backend technologies.",
     icon: React.createElement(FaReact),
-    date: "2022 - Present",
+    date: "Dec 2022 - Present",
   },
   {
     title: "Frontend Web developer | Invints Infotech Private Limited",
@@ -47,7 +47,7 @@ export const experiencesData = [
     description:
       "Graduated after 6 months of study, secured a front-end developer role. Responsible for building responsive web applications and collaborating with design teams.",
     icon: React.createElement(CgWorkAlt),
-    date: "2019 - 2022",
+    date: "Jun 2022 - Nov 2022",
   },
 ] as const;
 
