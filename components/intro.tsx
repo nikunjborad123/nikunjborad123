@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { useRef } from 'react';
-import Link from 'next/link';
-import { BsArrowRight } from 'react-icons/bs';
-import { HiDownload } from 'react-icons/hi';
-import { useSectionInView } from '@/lib/hooks';
-import { useActiveSectionContext } from '@/context/active-section-context';
-import photo from '../public/nikunj.png';
+import Image from "next/image";
+import React, { useRef } from "react";
+import Link from "next/link";
+import { BsArrowRight } from "react-icons/bs";
+import { HiDownload } from "react-icons/hi";
+import { useSectionInView } from "@/lib/hooks";
+import { useActiveSectionContext } from "@/context/active-section-context";
+import photo from "../public/nikunj.png";
 // import { gsap } from 'gsap';
 // import { useGSAP } from '@gsap/react';
 // import SplitType from 'split-type';
@@ -17,7 +17,7 @@ export default function Intro() {
   // const introRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   // const tl = useRef<GSAPTimeline>();
-  const { ref } = useSectionInView('Home', 0.5);
+  const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   // useGSAP(
@@ -63,11 +63,11 @@ export default function Intro() {
       id="home"
       className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
     >
-      <div ref={containerRef} className='min-h-[calc(100vh_-_200px)] grid'>
+      <div ref={containerRef} className="min-h-[calc(100vh_-_200px)] grid">
         <div className="flex items-center justify-center">
           <div className="relative">
             <Image
-              src={'/emojy-with-leptop-2.jpg'}
+              src={"/emojy-with-leptop-2.jpg"}
               alt="Nikunj Borad"
               width="240"
               height="240"
@@ -80,13 +80,12 @@ export default function Intro() {
           </div>
         </div>
 
-        <h1
-          className="introText mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl"
-        >
+        <h1 className="introText mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl">
           <span>
-            Hello, I'm <b>Nikunj</b>. I'm a <b>Frontend developer</b> with{' '}
+            Hello, I'm <b>Nikunj</b>. I'm a <b>Frontend developer</b> with{" "}
             <b> 5 years </b> of experience. I enjoy building sites & apps. My
-            focus is <b> React (Next.js)</b>.  I'm passionate about creating seamless user experiences and continually learning new technologies.
+            focus is <b> React (Next.js)</b>. I'm passionate about creating
+            seamless user experiences and continually learning new technologies.
           </span>
         </h1>
 
@@ -95,16 +94,16 @@ export default function Intro() {
             href="#contact"
             className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 hover:text-green-400 active:scale-105 transition"
             onClick={() => {
-              setActiveSection('Contact');
+              setActiveSection("Contact");
               setTimeOfLastClick(Date.now());
             }}
           >
-            Contact me here{' '}
+            Contact me here{" "}
             <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
           </Link>
 
           <Link
-            href={'/Nikunj-resume-2024.pdf'}
+            href={"/Nikunj-borad.pdf"}
             target="_blank"
             rel="noopener noreferrer"
             locale={false}
@@ -112,9 +111,9 @@ export default function Intro() {
           >
             <span
               className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-              onClick={() => window.open('/Nikunj-resume-2024.pdf', '_blank')}
+              onClick={() => window.open("/Nikunj-borad.pdf", "_blank")}
             >
-              Download CV{' '}
+              Download CV{" "}
               <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
             </span>
           </Link>
