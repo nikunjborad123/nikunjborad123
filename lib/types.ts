@@ -1,3 +1,3 @@
-import { links } from './data';
+import { railLinks } from "./data";
 
-export type SectionName = (typeof links)[number]['name'];
+export type RailSectionId = (typeof railLinks)[number]["id"];
