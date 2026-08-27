@@ -77,7 +77,20 @@ void main(){
 }`;
 
 const ACCENT: [number, number, number] = [61 / 255, 224 / 255, 255 / 255];
-const COUNT = 58000;
+const MAX_COUNT = 58000;
+
+/**
+ * The point count is the whole GPU cost here. Mid-range and mobile GPUs read
+ * the knot fine at a third of the density, so scale it instead of shipping one
+ * count that either melts weak hardware or wastes strong hardware.
+ */
+const pointCount = () => {
+  const cores = (navigator as Navigator).hardwareConcurrency ?? 8;
+  const small = window.matchMedia?.("(max-width: 768px)").matches;
+  if (small) return Math.round(MAX_COUNT * 0.3);
+  if (cores <= 6) return Math.round(MAX_COUNT * 0.5);
+  return MAX_COUNT;
+};
 
 export default function WebglHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -93,12 +106,11 @@ export default function WebglHero() {
     let uniforms: Record<string, WebGLUniformLocation | null> = {};
     let raf = 0;
     let visible = true;
-    let paused = false;
-    let dirty = false;
     const mouse = [0, 0];
     const target = [0, 0];
     let scroll = 0;
     let intro = 0;
+    const COUNT = pointCount();
 
     const compile = (type: number, src: string) => {
       const s = gl!.createShader(type)!;
@@ -155,13 +167,16 @@ export default function WebglHero() {
       gl.viewport(0, 0, w, h);
       gl.uniform2f(uniforms.uRes, w, h);
       gl.uniform1f(uniforms.uDpr, dpr);
-      dirty = true;
     };
 
     const frame = (now: number) => {
+      // Stop the loop rather than scheduling no-op frames: a hidden tab or a
+      // scrolled-past hero should cost exactly zero, not one callback per vsync.
+      if (!gl || !visible || document.hidden) {
+        raf = 0;
+        return;
+      }
       raf = requestAnimationFrame(frame);
-      if (!gl) return;
-      if (!visible || paused) return;
       const t = now / 1000;
       intro = Math.min(1, intro + 0.014);
       const ease = reduced ? 1 : 1 - Math.pow(1 - intro, 3);
@@ -175,7 +190,11 @@ export default function WebglHero() {
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.POINTS, 0, COUNT);
-      if (reduced && intro >= 1) cancelAnimationFrame(raf);
+      // Reduced motion renders one settled frame, then parks the loop.
+      if (reduced && intro >= 1) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
     };
 
     const onMove = (e: PointerEvent) => {
@@ -189,9 +208,15 @@ export default function WebglHero() {
     const onContextLost = (e: Event) => {
       e.preventDefault();
       cancelAnimationFrame(raf);
+      raf = 0;
     };
+    const start = () => {
+      if (raf || !visible || document.hidden) return;
+      raf = requestAnimationFrame(frame);
+    };
+    const onVisibility = () => start();
     const onContextRestored = () => {
-      if (boot()) frame(performance.now());
+      if (boot()) start();
     };
 
     if (!boot()) return;
@@ -203,15 +228,15 @@ export default function WebglHero() {
     const io = new IntersectionObserver(
       (es) => {
         visible = es[0].isIntersecting;
+        start();
       },
       { rootMargin: "120px" },
     );
     io.observe(wrap);
+    document.addEventListener("visibilitychange", onVisibility);
     canvas.addEventListener("webglcontextlost", onContextLost);
     canvas.addEventListener("webglcontextrestored", onContextRestored);
-    raf = requestAnimationFrame(frame);
-    void dirty;
-    void paused;
+    start();
 
     return () => {
       cancelAnimationFrame(raf);
@@ -219,6 +244,7 @@ export default function WebglHero() {
       io.disconnect();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
       canvas.removeEventListener("webglcontextlost", onContextLost);
       canvas.removeEventListener("webglcontextrestored", onContextRestored);
     };

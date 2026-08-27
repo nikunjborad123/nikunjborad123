@@ -1,10 +1,11 @@
-import WebglHero from "./webgl-hero";
+import HeroCanvas from "./hero-canvas";
+import ParticleText from "./particle-text";
 
 export default function Hero() {
   return (
     <section id="hero" className="hero">
       <div className="hero__canvas-layer">
-        <WebglHero />
+        <HeroCanvas />
       </div>
       <div className="hero__gradient" aria-hidden="true" />
 
@@ -15,11 +16,12 @@ export default function Hero() {
         </p>
 
         <h1 className="hero__title">
+          <span className="sr-only">Nikunj Borad</span>
           <span className="hero__title-line">
-            <span className="hero__title-line-inner">Nikunj</span>
+            <ParticleText text="Nikunj" color="#ede7dc" highlightColor="#ede7dc" />
           </span>
           <span className="hero__title-line">
-            <span className="hero__title-line-inner hero__title-line-inner--accent">Borad</span>
+            <ParticleText text="Borad" color="#a1ff3d" highlightColor="#a1ff3d" />
           </span>
         </h1>
 

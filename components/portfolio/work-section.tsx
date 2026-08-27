@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { projectsData } from "@/lib/data";
 import ImageSlotPlaceholder from "./image-slot-placeholder";
 
@@ -13,7 +14,25 @@ export default function WorkSection() {
         {projectsData.map((project, i) => (
           <article key={project.slotId} className={`work-article${i % 2 === 1 ? " work-article--reverse" : ""}`}>
             <div className="work-visual" data-anim="wipeIn" data-reveal="entry 6% cover 34%">
-              <ImageSlotPlaceholder label={project.placeholder} />
+              {project.image ? (
+                /*
+                  next/image over a bare <img>: it emits width/height (no CLS),
+                  loading="lazy" and decoding="async" for free. The lazy flag
+                  also stops React Float from injecting a high-priority
+                  <link rel=preload as=image> for a below-the-fold screenshot,
+                  which was previously competing with the hero for bandwidth.
+                */
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={project.imageWidth}
+                  height={project.imageHeight}
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  loading="lazy"
+                />
+              ) : (
+                <ImageSlotPlaceholder label={project.placeholder} />
+              )}
             </div>
             <div className="work-copy">
               <p className="work-eyebrow">{project.eyebrow}</p>

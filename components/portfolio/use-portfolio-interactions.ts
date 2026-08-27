@@ -55,42 +55,103 @@ export function usePortfolioInteractions(rootRef: RefObject<HTMLDivElement>) {
       });
     }
 
-    /* ---------- custom cursor + magnetic hover ---------- */
+    /* ---------- inspector-reticle cursor + magnetic hover ---------- */
     function initCursor() {
-      const ring = root!.querySelector<HTMLElement>('[data-js="cursor-ring"]');
+      const reticle = root!.querySelector<HTMLElement>('[data-js="cursor-reticle"]');
       const dot = root!.querySelector<HTMLElement>('[data-js="cursor-dot"]');
-      if (!ring || !dot) return;
+      const label = root!.querySelector<HTMLElement>('[data-js="cursor-label"]');
+      if (!reticle || !dot || !label) return;
       const fine = matchMedia("(pointer: fine)").matches;
       if (!fine || reduced) return;
 
+      const HIT = "a,button,[data-magnetic],[role='slider'],[data-cursor-label]";
+      const IDLE = 26; // idle bracket box, px
+      const PAD = 9; // breathing room around a snapped target
+      const PRESS = 3; // how far the brackets tighten while held
+
       let mx = innerWidth / 2;
       let my = innerHeight / 2;
-      let rx = mx;
-      let ry = my;
-      let hovering: Element | null = null;
+      // animated bracket box (top-left + size), eased toward `desired()`
+      let bx = mx - IDLE / 2;
+      let by = my - IDLE / 2;
+      let bw = IDLE;
+      let bh = IDLE;
+      let target: HTMLElement | null = null;
       let magnet: HTMLElement | null = null;
+      let pressed = false;
       let raf = 0;
+
+      /**
+       * The readout printed in the badge. Empty string = no badge.
+       * `data-cursor-label` on any element overrides everything below.
+       */
+      const labelFor = (el: HTMLElement): string => {
+        const custom = el.getAttribute("data-cursor-label");
+        if (custom) return custom;
+        if (el.getAttribute("role") === "slider") return "drag ↔";
+        const a = el.closest("a");
+        if (a) {
+          const href = a.getAttribute("href") || "";
+          if (a.hasAttribute("download")) return "download ↓";
+          if (href.startsWith("mailto:")) return "email";
+          if (href.startsWith("tel:")) return "call";
+          if (a.getAttribute("target") === "_blank") return "open ↗";
+          if (href.startsWith("#")) return "jump";
+          return "view";
+        }
+        const btn = el.closest("button");
+        if (btn) {
+          const expanded = btn.getAttribute("aria-expanded");
+          if (expanded === "true") return "collapse";
+          if (expanded === "false") return "expand";
+          if (btn.getAttribute("aria-pressed") === "true") return "active";
+          return "select";
+        }
+        return "";
+      };
+
+      const paintLabel = () => {
+        const text = target ? labelFor(target) : "";
+        if (label.textContent !== text) label.textContent = text;
+        reticle.dataset.label = String(!!text);
+      };
+
+      const setTarget = (el: HTMLElement | null) => {
+        target = el;
+        reticle.dataset.mode = !el ? "idle" : el.getAttribute("role") === "slider" ? "drag" : "snap";
+        paintLabel();
+        if (magnet && magnet !== el) {
+          magnet.style.transform = "";
+          magnet = null;
+        }
+        if (el && el.hasAttribute("data-magnetic")) magnet = el;
+      };
+
+      /** Where the brackets want to be this frame. */
+      const desired = () => {
+        if (target && !target.isConnected) setTarget(null);
+        if (target) {
+          const r = target.getBoundingClientRect();
+          // Wrapping something huge reads as a page border, not a cursor —
+          // fall back to a fixed focus box riding the pointer.
+          if (r.width <= innerWidth * 0.8 && r.height <= innerHeight * 0.5) {
+            const p = pressed ? PAD - PRESS : PAD;
+            return { x: r.left - p, y: r.top - p, w: r.width + p * 2, h: r.height + p * 2 };
+          }
+          return { x: mx - 22, y: my - 22, w: 44, h: 44 };
+        }
+        const s = pressed ? IDLE - PRESS * 2 : IDLE;
+        return { x: mx - s / 2, y: my - s / 2, w: s, h: s };
+      };
 
       const move = (e: PointerEvent) => {
         mx = e.clientX;
         my = e.clientY;
         dot.style.transform = `translate3d(${mx}px,${my}px,0)`;
-        ring.style.opacity = "1";
+        reticle.dataset.visible = "true";
         dot.style.opacity = "1";
-        const t = e.target instanceof Element ? e.target.closest("a,button,[data-magnetic],[role='slider']") : null;
-        if (t !== hovering) {
-          hovering = t;
-          const big = !!t;
-          ring.style.width = big ? "68px" : "36px";
-          ring.style.height = big ? "68px" : "36px";
-          ring.style.margin = big ? "-34px 0 0 -34px" : "-18px 0 0 -18px";
-          ring.style.backgroundColor = big ? "rgba(61,224,255,0.10)" : "transparent";
-          if (magnet && magnet !== t) {
-            magnet.style.transform = "";
-            magnet = null;
-          }
-          if (t && t.hasAttribute("data-magnetic")) magnet = t as HTMLElement;
-        }
+        const hit = e.target instanceof Element ? (e.target.closest(HIT) as HTMLElement | null) : null;
+        if (hit !== target) setTarget(hit);
         if (magnet) {
           const b = magnet.getBoundingClientRect();
           const dx = (mx - (b.left + b.width / 2)) * 0.16;
@@ -99,17 +160,52 @@ export function usePortfolioInteractions(rootRef: RefObject<HTMLDivElement>) {
         }
       };
       const leave = () => {
-        ring.style.opacity = "0";
+        reticle.dataset.visible = "false";
         dot.style.opacity = "0";
       };
       const loop = () => {
-        rx += (mx - rx) * 0.16;
-        ry += (my - ry) * 0.16;
-        ring.style.transform = `translate3d(${rx.toFixed(2)}px,${ry.toFixed(2)}px,0)`;
-        raf = requestAnimationFrame(loop);
+        const d = desired();
+        // Snapped brackets chase harder so they stay glued to a moving target.
+        const k = target ? 0.3 : 0.2;
+        bx += (d.x - bx) * k;
+        by += (d.y - by) * k;
+        bw += (d.w - bw) * k;
+        bh += (d.h - bh) * k;
+        reticle.style.transform = `translate3d(${bx.toFixed(2)}px,${by.toFixed(2)}px,0)`;
+        reticle.style.width = bw.toFixed(2) + "px";
+        reticle.style.height = bh.toFixed(2) + "px";
+        // Flip the badge above the box when it would fall off the fold.
+        reticle.dataset.flip = String(by + bh + 34 > innerHeight);
+
+        // An exponential ease never mathematically arrives. Once every axis is
+        // inside half a pixel of its goal the next frame would be visually
+        // identical, so park the loop; `wake()` restarts it on the next input.
+        // Without this the page holds a rAF callback open for its entire life.
+        const settled =
+          Math.abs(d.x - bx) < 0.5 &&
+          Math.abs(d.y - by) < 0.5 &&
+          Math.abs(d.w - bw) < 0.5 &&
+          Math.abs(d.h - bh) < 0.5;
+        raf = settled ? 0 : requestAnimationFrame(loop);
+      };
+      const wake = () => {
+        if (!raf && !document.hidden) raf = requestAnimationFrame(loop);
       };
       on(window, "pointermove", move as EventListener, { passive: true });
+      on(window, "pointermove", wake, { passive: true });
+      on(window, "scroll", wake, { passive: true });
       on(document, "pointerleave", leave as EventListener);
+      on(window, "pointerdown", (() => {
+        pressed = true;
+        reticle.dataset.press = "true";
+        wake();
+      }) as EventListener);
+      on(window, "pointerup", (() => {
+        pressed = false;
+        reticle.dataset.press = "false";
+        paintLabel(); // aria-expanded / aria-pressed may have just flipped
+        wake();
+      }) as EventListener);
       raf = requestAnimationFrame(loop);
       cleanup.push(() => cancelAnimationFrame(raf));
       root!.classList.add("has-custom-cursor");
@@ -370,8 +466,29 @@ export function usePortfolioInteractions(rootRef: RefObject<HTMLDivElement>) {
         el.textContent = fmt.format(new Date()) + " IST";
       };
       tick();
-      const id = setInterval(tick, 1000);
-      cleanup.push(() => clearInterval(id));
+
+      // A once-a-second DOM write is cheap but pointless in a background tab,
+      // and it keeps timer wakeups (and battery drain) going indefinitely.
+      let id = 0;
+      const run = () => {
+        if (id) return;
+        id = window.setInterval(tick, 1000);
+      };
+      const halt = () => {
+        window.clearInterval(id);
+        id = 0;
+      };
+      const onVisibility = () => {
+        if (document.hidden) {
+          halt();
+        } else {
+          tick(); // resync immediately; it may have been hidden for minutes
+          run();
+        }
+      };
+      run();
+      on(document, "visibilitychange", onVisibility);
+      cleanup.push(halt);
     }
 
     return () => cleanup.forEach((fn) => fn());

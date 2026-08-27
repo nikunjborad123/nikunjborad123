@@ -1,4 +1,4 @@
-import ImageSlotPlaceholder from "./image-slot-placeholder";
+import Image from "next/image";
 import { timezoneOverlapData } from "@/lib/data";
 
 export default function AboutSection() {
@@ -9,7 +9,14 @@ export default function AboutSection() {
         <div className="about-grid">
           <div data-anim="wipeIn" data-reveal="entry 6% cover 32%">
             <div className="about-portrait">
-              <ImageSlotPlaceholder label="Drop a portrait" />
+              <Image
+                src="/about-portrait.webp"
+                alt="Nikunj Borad"
+                width={920}
+                height={1150}
+                sizes="(max-width: 900px) 100vw, 460px"
+                loading="lazy"
+              />
             </div>
           </div>
           <div>

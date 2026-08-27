@@ -55,6 +55,9 @@ export const projectsData = [
   {
     slotId: "work-investment",
     placeholder: "Drop a dashboard screenshot",
+    image: "/project-cagr.webp",
+    imageWidth: 880,
+    imageHeight: 712,
     eyebrow: "01 — Fintech SaaS",
     title: "Investment Analytics SaaS Platform",
     role: "Lead Frontend & Architecture Engineer",
@@ -71,6 +74,9 @@ export const projectsData = [
   {
     slotId: "work-specs",
     placeholder: "Drop a data-table screenshot",
+    image: "/project-specs.webp" as string | undefined,
+    imageWidth: 1200,
+    imageHeight: 900,
     eyebrow: "02 — Enterprise tooling",
     title: "Enterprise Product Specification Management System",
     role: "Full-Stack Developer",

@@ -19,7 +19,13 @@ export default function PortfolioInteractions({ children }: { children: React.Re
         <div data-js="progress-bar" className="progress-bar" />
       </div>
 
-      <div data-js="cursor-ring" className="cursor-ring" aria-hidden="true" />
+      <div data-js="cursor-reticle" className="cursor-reticle" data-mode="idle" aria-hidden="true">
+        <span className="cursor-reticle__corner cursor-reticle__corner--tl" />
+        <span className="cursor-reticle__corner cursor-reticle__corner--tr" />
+        <span className="cursor-reticle__corner cursor-reticle__corner--bl" />
+        <span className="cursor-reticle__corner cursor-reticle__corner--br" />
+        <span data-js="cursor-label" className="cursor-reticle__label" />
+      </div>
       <div data-js="cursor-dot" className="cursor-dot" aria-hidden="true" />
 
       {children}
