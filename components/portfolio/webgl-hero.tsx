@@ -12,7 +12,7 @@ import { useEffect, useRef } from "react";
 
 const VERT = `#version 300 es
 precision highp float;
-uniform float uTime, uCount, uScroll, uDpr, uIntro;
+uniform float uTime, uCount, uScroll, uDpr, uIntro, uYOffset, uSizeMul, uBrightness;
 uniform vec2 uRes, uMouse;
 uniform vec3 uAccent;
 out vec3 vCol;
@@ -56,13 +56,16 @@ void main(){
   float persp = 3.5 / w;
   vec2 ndc = vec2(p.x * persp, p.y * persp);
   ndc.x *= uRes.y / max(uRes.x, 1.0);
+  // On tall/portrait viewports the name block is pinned to the bottom, so
+  // shift the cloud up into the space that would otherwise sit empty above it.
+  ndc.y += uYOffset;
 
   gl_Position = vec4(ndc, 0.0, 1.0);
-  gl_PointSize = clamp(persp * 1.35 * uDpr, 0.55, 4.5 * uDpr);
+  gl_PointSize = clamp(persp * 1.35 * uDpr * uSizeMul, 0.55, 4.5 * uDpr * uSizeMul);
 
   float depth = clamp((p.z + 3.3) / 6.6, 0.0, 1.0);
   vCol = mix(uAccent, vec3(0.94, 0.91, 0.86), pow(depth, 1.5));
-  vAlpha = (0.10 + 0.46 * depth) * (1.0 - uScroll * 0.92) * uIntro;
+  vAlpha = (0.10 + 0.46 * depth) * (1.0 - uScroll * 0.92) * uIntro * uBrightness;
 }`;
 
 const FRAG = `#version 300 es
@@ -143,7 +146,19 @@ export default function WebglHero() {
       }
       gl.useProgram(p);
       uniforms = {};
-      for (const n of ["uTime", "uCount", "uScroll", "uDpr", "uIntro", "uRes", "uMouse", "uAccent"]) {
+      for (const n of [
+        "uTime",
+        "uCount",
+        "uScroll",
+        "uDpr",
+        "uIntro",
+        "uYOffset",
+        "uSizeMul",
+        "uBrightness",
+        "uRes",
+        "uMouse",
+        "uAccent",
+      ]) {
         uniforms[n] = gl.getUniformLocation(p, n);
       }
       gl.bindVertexArray(gl.createVertexArray());
@@ -161,6 +176,13 @@ export default function WebglHero() {
       const dpr = Math.min(devicePixelRatio || 1, 1.75);
       const w = Math.max(1, Math.round(wrap.clientWidth * dpr));
       const h = Math.max(1, Math.round(wrap.clientHeight * dpr));
+      // Portrait hero (mobile): the point cloud is centered on the viewport
+      // by default, which leaves it hovering mid-way over content instead of
+      // the empty space above it. Nudge it up and size it up to compensate.
+      const portrait = wrap.clientHeight > wrap.clientWidth * 1.15;
+      gl.uniform1f(uniforms.uYOffset, portrait ? 0.32 : 0);
+      gl.uniform1f(uniforms.uSizeMul, portrait ? 1.6 : 1);
+      gl.uniform1f(uniforms.uBrightness, portrait ? 2.2 : 1);
       if (canvas.width === w && canvas.height === h) return;
       canvas.width = w;
       canvas.height = h;
